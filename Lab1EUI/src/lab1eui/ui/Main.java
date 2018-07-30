@@ -52,6 +52,9 @@ public class Main {
         System.out.println("20.Actualizar empleado");
         System.out.println("21.Borrar empleado");
         System.out.println("22.Buscar empleado por cedula");
+        System.out.println("23.Actualizar laboratorio");
+        System.out.println("24.Borrar laboratorio");
+        System.out.println("25.Buscar laboratorio por codigo");
 
     }
 
@@ -150,6 +153,18 @@ public class Main {
                 break;
             case 22:
                 buscarEmpleadoPorCedula();
+
+                break;
+            case 23:
+                actualizarLaboratorio();
+
+                break;
+            case 24:
+                borrarLaboratorio();
+
+                break;
+            case 25:
+                buscarLaboratorioPorCodigo();
 
                 break;
 
@@ -422,7 +437,7 @@ public class Main {
         System.out.println(ctrl.buscarCursoPorCodigo(codigoCurso));
     }
 
-    public static void registrarLaboratorio() throws IOException {
+    public static void registrarLaboratorio() throws IOException, Exception {
 
         System.out.println("Registro de laboratorio");
         System.out.println("------------------------");
@@ -441,6 +456,47 @@ public class Main {
         capacidadLaboratorio = Integer.parseInt(in.readLine());
 
         ctrl.registrarLaboratorio(codigoLaboratorio, nombreLaboratorio, capacidadLaboratorio);
+    }
+
+    public static void actualizarLaboratorio() throws IOException, Exception {
+
+        System.out.println("Actualizar laboratorio");
+        System.out.println("------------------------");
+
+        int codigoLaboratorio;
+        String nombreLaboratorio;
+        int capacidadLaboratorio;
+
+        System.out.println("Ingrese el código del laboratorio");
+        codigoLaboratorio = Integer.parseInt(in.readLine());
+
+        System.out.println("Ingrese el nombre del laboratorio");
+        nombreLaboratorio = in.readLine();
+
+        System.out.println("Ingrese la capacidad del laboratorio");
+        capacidadLaboratorio = Integer.parseInt(in.readLine());
+
+        ctrl.actualizarLaboratorio(codigoLaboratorio, nombreLaboratorio, capacidadLaboratorio);
+    }
+
+    public static void borrarLaboratorio() throws IOException, Exception {
+        System.out.println("Borrar laboratorio");
+        int codigoLaboratorio;
+
+        System.out.println("Ingrese el código del laboratorio");
+        codigoLaboratorio = Integer.parseInt(in.readLine());
+
+        ctrl.borrarLaboratorio(codigoLaboratorio);
+    }
+
+    public static void buscarLaboratorioPorCodigo() throws IOException, Exception {
+        System.out.println("Busqueda de laboratorio");
+        int codigoLaboratorio;
+
+        System.out.println("Ingrese el código del laboratorio");
+        codigoLaboratorio = Integer.parseInt(in.readLine());
+
+        System.out.println(ctrl.buscarLaboratorioPorCodigo(codigoLaboratorio));
     }
 
     public static void registrarReservaLaboratorio() throws IOException, Exception {
@@ -496,7 +552,7 @@ public class Main {
 
     }
 
-    public static void listarLaboratorios() {
+    public static void listarLaboratorios() throws Exception {
         System.out.println("Lista de Laboratorios");
         for (String data : ctrl.listarLaboratorios()) {
             System.out.println("------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
