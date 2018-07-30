@@ -1,0 +1,144 @@
+CREATE DEFINER=`root`@`localhost` PROCEDURE `deleteCarrera`(
+pCodigo int)
+BEGIN
+delete from  carrera where codigo = pCodigo;
+END
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `deleteCurso`(
+pCodigo int)
+BEGIN
+DELETE FROM curso WHERE codigo = pCodigo;
+END
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `deleteEmpleado`(
+pCedula int)
+BEGIN
+delete from  Empleado where cedula = pCedula;
+END
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `deleteLaboratorio`(
+pCodigo int)
+BEGIN
+delete from  laboratorio where codigo = pCodigo;
+END
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `deleteProfesor`(
+pCedula int)
+BEGIN
+delete from profesor where cedula = pCedula;
+END
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `insertCarrera`(
+codigo int,
+nombre varchar(45),
+grado varchar(45),
+acreditada tinyint
+)
+BEGIN
+insert into carrera(codigo,nombre,grado,acreditada)
+values (codigo,nombre,grado,acreditada);
+END
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `insertCurso`(
+pCodigo int,
+pNombre varchar(45),
+pCreditos int
+)
+BEGIN
+INSERT into curso(codigo,nombre,creditos)
+values (pCodigo,pNombre,pCreditos);
+END
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `insertEmpleado`(
+pCedula int,
+pNombre varchar(45),
+pApellido varchar(45),
+pDireccion varchar(45),
+pTelefono varchar(45),
+pPuesto varchar(45)
+)
+BEGIN
+insert into empleado (cedula, nombre, apellido, direccion, telefono, puesto)
+values (pCedula,pNombre,pApellido,pDireccion,pTelefono,pPuesto);
+END
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `insertLaboratorio`(
+pCodigo int,
+pNombre varchar(45),
+pCapacidad int
+)
+BEGIN
+insert into laboratorio (codigo,nombre,capacidad)
+values (pCodigo,pNombre,pCapacidad);
+END
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `insertProfesor`(
+pCedula int,
+pNombre varchar(45),
+pApellido varchar(45),
+pDireccion varchar(45),
+pTelefono varchar(45),
+pLugarTrabajo varchar(45),
+pAnnosExp int
+)
+BEGIN
+insert into profesor (cedula, nombre, apellido, direccion, telefono, lugarTrabajo, annosExp)
+values (pCedula,pNombre,pApellido,pDireccion,pTelefono,pLugarTrabajo,pAnnosExp);
+END
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `updateCarrera`(
+pCodigo int,
+pNombre varchar(45),
+pGrado varchar(45),
+pAcreditada tinyint)
+BEGIN
+update carrera set nombre = pNombre, grado= pGrado, acreditada= pAcreditada
+where codigo = pCodigo;
+END
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `updateCurso`(
+pCodigo int,
+pNombre varchar(45),
+pCreditos int)
+BEGIN
+update curso set nombre = pNombre, creditos= pCreditos
+where codigo = pCodigo;
+END
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `updateEmpleado`(
+pCedula int,
+pNombre varchar(45),
+pApellido varchar(45),
+pDireccion varchar(45),
+pTelefono varchar(45),
+pPuesto varchar(45)
+)
+BEGIN
+update empleado set nombre = pNombre, apellido= pApellido, direccion= pDireccion, telefono= pTelefono, puesto= pPuesto
+where cedula = pCedula;
+END
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `updateLaboratorio`(
+pCodigo int,
+pNombre varchar(45),
+pCapacidad int
+)
+BEGIN
+update laboratorio set nombre = pNombre, capacidad= pCapacidad
+where codigo = pCodigo;
+END
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `updateProfesor`(
+pCedula int,
+pNombre varchar(45),
+pApellido varchar(45),
+pDireccion varchar(45),
+pTelefono varchar(45),
+pLugarTrabajo varchar(45),
+pAnnosExp int
+)
+BEGIN
+update profesor set nombre = pNombre, apellido= pApellido, direccion= pDireccion, telefono= pTelefono, lugarTrabajo= pLugarTrabajo, annosExp= pAnnosExp
+where cedula = pCedula;
+END
+

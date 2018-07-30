@@ -30,34 +30,36 @@ public class Main {
 
     static void mostrarMenu() {
         System.out.println("");
-        System.out.println("1.Registrar empleado");
-        System.out.println("2.Registrar profesor");
-        System.out.println("3.Registrar carrera");
-        System.out.println("4.Listar carreras");
-        System.out.println("5.Registrar curso");
-        System.out.println("6.Listar cursos");
-        System.out.println("7.Registrar laboratorio");
-        System.out.println("8.Listar laboratorios");
-        System.out.println("9.Eliminar laboratorio");
-        System.out.println("10.Registrar reserva de laboratorio");
-        System.out.println("11.Listar reserva de laboratorio");
-        System.out.println("12.Listar empleados");
-        System.out.println("13.Listar profesores");
-        System.out.println("14.Actualizar carrera");
-        System.out.println("15.Borrar carrera");
-        System.out.println("16.Buscar carrera por codigo");
-        System.out.println("17.Actualizar curso");
-        System.out.println("18.Borrar curso");
-        System.out.println("19.Buscar curso por codigo");
-        System.out.println("20.Actualizar empleado");
-        System.out.println("21.Borrar empleado");
-        System.out.println("22.Buscar empleado por cedula");
-        System.out.println("23.Actualizar laboratorio");
-        System.out.println("24.Borrar laboratorio");
-        System.out.println("25.Buscar laboratorio por codigo");
-        System.out.println("26.Actualizar profesor");
-        System.out.println("27.Borrar profesor");
-        System.out.println("28.Buscar profesor por cedula");
+        System.out.println("1. Registrar empleado");
+        System.out.println("2. Listar empleados");
+        System.out.println("3. Buscar empleado por cedula");
+        System.out.println("4. Actualizar empleado");
+        System.out.println("5. Borrar empleado");
+        System.out.println("6. Registrar profesor");
+        System.out.println("7. Listar profesores");
+        System.out.println("8. Buscar profesor por cedula");
+        System.out.println("9. Actualizar profesor");
+        System.out.println("10. Borrar profesor");
+        System.out.println("11. Registrar carrera");
+        System.out.println("12. Listar carreras");
+        System.out.println("13. Buscar carrera por codigo");
+        System.out.println("14. Actualizar carrera");
+        System.out.println("15. Borrar carrera");
+        System.out.println("16. Registrar curso");
+        System.out.println("17. Listar Cursos");
+        System.out.println("18. Buscar curso por codigo");
+        System.out.println("19. Actualizar curso");
+        System.out.println("20. Borrar curso");
+        System.out.println("21. Registrar laboratorio");
+        System.out.println("22. Listar laboratorios");
+        System.out.println("23. Actualizar laboratorio");
+        System.out.println("24. Buscar laboratorio por codigo");
+        System.out.println("25. Borrar laboratorio");
+        System.out.println("26. Registrar reserva de laboratorio");
+        System.out.println("27. Listar reservas de laboratorio");
+        System.out.println("28. Buscar reserva de laboratorio por codigo");
+        System.out.println("29. Actualizar reserva de laboratorio");
+        System.out.println("30. Borrar reserva de laboratorio");
 
     }
 
@@ -75,119 +77,97 @@ public class Main {
                 registrarEmpleado();
                 break;
             case 2:
-                registrarProfesor();
+                listarEmpleados();
                 break;
             case 3:
-                registrarCarrera();
-
+                buscarEmpleadoPorCedula();
                 break;
             case 4:
-                listarCarreras();
-
+                actualizarEmpleado();
                 break;
             case 5:
-                registrarCurso();
-
+                borrarEmpleado();
                 break;
             case 6:
-                listarCursos();
-
+                registrarProfesor();
                 break;
             case 7:
-                registrarLaboratorio();
-
+                listarProfesores();
                 break;
             case 8:
-                listarLaboratorios();
-
+                buscarProfesorPorCedula();
                 break;
-
             case 9:
-//                eliminarLaboratorio();
+                actualizarProfesor();
                 break;
-
             case 10:
-                registrarReservaLaboratorio();
+                borrarProfesor();
                 break;
-
             case 11:
-                listarReservasLaboratorio();
-
+                registrarCarrera();
                 break;
             case 12:
-                listarEmpleados();
-
+                listarCarreras();
                 break;
             case 13:
-                listarProfesores();
-
+                buscarCarreraPorCodigo();
                 break;
             case 14:
                 actualizarCarrera();
-
                 break;
             case 15:
                 borrarCarrera();
-
                 break;
             case 16:
-                buscarCarreraPorCodigo();
-
+                registrarCurso();
                 break;
             case 17:
-                actualizarCurso();
-
+                listarCursos();
                 break;
             case 18:
-                borrarCurso();
-
+                buscarCursoPorCodigo();
                 break;
             case 19:
-                buscarCursoPorCodigo();
-
+                actualizarCurso();
                 break;
             case 20:
-                actualizarEmpleado();
-
+                borrarCurso();
                 break;
             case 21:
-                borrarEmpleado();
-
+                registrarLaboratorio();
                 break;
             case 22:
-                buscarEmpleadoPorCedula();
-
+                listarLaboratorios();
                 break;
             case 23:
-                actualizarLaboratorio();
-
+                buscarLaboratorioPorCodigo();
                 break;
             case 24:
-                borrarLaboratorio();
-
+                actualizarLaboratorio();
                 break;
             case 25:
-                buscarLaboratorioPorCodigo();
-
+                borrarLaboratorio();
                 break;
             case 26:
-                actualizarProfesor();
-
+                registrarReservaLaboratorio();
                 break;
             case 27:
-                borrarProfesor();
-
+                listarReservasLaboratorio();
                 break;
             case 28:
-                buscarProfesorPorCedula();
-
+                buscarReservaLaboratorioPorCodigo();
                 break;
-
+            case 29:
+                actualizarReservaLaboratorio();
+                break;
+            case 30:
+                borrarReservaLaboratorio();
+                break;
         }
-
         return salir;
     }
 
+    //Empleado
     public static void registrarEmpleado() throws IOException, Exception {
 
         System.out.println("Registro de empleado");
@@ -274,7 +254,19 @@ public class Main {
         System.out.println(ctrl.buscarEmpleadoPorCedula(cedulaEmpleado));
     }
 
-    public static void registrarProfesor() throws IOException {
+    public static void listarEmpleados() throws IOException, Exception {
+        System.out.println("Lista de Empleados");
+        for (String data : ctrl.listarEmpleados()) {
+            System.out.println("------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
+            System.out.println(data);
+        }
+        System.out.println("------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
+
+    }
+    //Empleado
+
+    //Profesor
+    public static void registrarProfesor() throws IOException, Exception {
 
         System.out.println("Registro de profesor");
         System.out.println("------------------------");
@@ -370,6 +362,17 @@ public class Main {
         System.out.println(ctrl.buscarProfesorPorCedula(cedulaProfesor));
     }
 
+    public static void listarProfesores() throws IOException, Exception {
+        System.out.println("Lista de Profesores");
+        for (String data : ctrl.listarProfesores()) {
+            System.out.println("------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
+            System.out.println(data);
+        }
+        System.out.println("------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
+    }
+    //Profesor
+
+    //Carrera
     public static void registrarCarrera() throws IOException, Exception {
 
         System.out.println("Registro de carrera");
@@ -448,6 +451,17 @@ public class Main {
         System.out.println(ctrl.buscarCarreraPorCodigo(codigoCarrera));
     }
 
+    public static void listarCarreras() throws IOException, Exception {
+        System.out.println("Lista de Carreras");
+        for (String data : ctrl.listarCarreras()) {
+            System.out.println("------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
+            System.out.println(data);
+        }
+        System.out.println("------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
+    }
+    //Carrera
+
+    //Curso
     public static void registrarCurso() throws IOException, Exception {
 
         System.out.println("Registro de curso");
@@ -510,6 +524,18 @@ public class Main {
         System.out.println(ctrl.buscarCursoPorCodigo(codigoCurso));
     }
 
+    public static void listarCursos() throws Exception {
+        System.out.println("Lista de Cursos");
+        for (String data : ctrl.listarCursos()) {
+            System.out.println("------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
+            System.out.println(data);
+        }
+        System.out.println("------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
+
+    }
+    //Curso
+
+    //Laboratorio
     public static void registrarLaboratorio() throws IOException, Exception {
 
         System.out.println("Registro de laboratorio");
@@ -572,6 +598,18 @@ public class Main {
         System.out.println(ctrl.buscarLaboratorioPorCodigo(codigoLaboratorio));
     }
 
+    public static void listarLaboratorios() throws Exception {
+        System.out.println("Lista de Laboratorios");
+        for (String data : ctrl.listarLaboratorios()) {
+            System.out.println("------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
+            System.out.println(data);
+        }
+        System.out.println("------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
+
+    }
+    //Laboratorio
+
+    //ReservaLaboratorio
     public static void registrarReservaLaboratorio() throws IOException, Exception {
 
         int codigoUniqLaboratorioReserva;
@@ -605,55 +643,67 @@ public class Main {
         ctrl.registrarReservaLaboratorio(codigoUniqLaboratorioReserva, codigoLaboratorioReserva, codigoCursoReserva, cedulaProfesorReserva, cantEstudiantesReserva, fechaReserva);
     }
 
-    public static void listarCursos() throws Exception {
-        System.out.println("Lista de Cursos");
-        for (String data : ctrl.listarCursos()) {
-            System.out.println("------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
-            System.out.println(data);
-        }
-        System.out.println("------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
+    public static void actualizarReservaLaboratorio() throws IOException, Exception {
 
+        int codigoUniqLaboratorioReserva;
+        int codigoLaboratorioReserva;
+        String codigoCursoReserva;
+        String cedulaProfesorReserva;
+        int cantEstudiantesReserva;
+        LocalDate fechaReserva;
+
+        System.out.println("Ingrese el código de la reserva");
+        codigoUniqLaboratorioReserva = Integer.parseInt(in.readLine());
+
+        listarLaboratorios();
+        System.out.println("Ingrese el código del laboratorio que desea reservar");
+        codigoLaboratorioReserva = Integer.parseInt(in.readLine());
+
+        listarCursos();
+        System.out.println("Ingrese el código del curso para la reserva");
+        codigoCursoReserva = in.readLine();
+
+        listarProfesores();
+        System.out.println("Ingrese la cédula del profesor responsable de la reserva");
+        cedulaProfesorReserva = in.readLine();
+
+        System.out.println("Ingrese la cantidad de estudiantes");
+        cantEstudiantesReserva = Integer.parseInt(in.readLine());
+
+        System.out.println("Ingrese la fecha de la reserva");
+        fechaReserva = crearFecha();
+
+        ctrl.actualizarReservaLaboratorio(codigoUniqLaboratorioReserva, codigoLaboratorioReserva, codigoCursoReserva, cedulaProfesorReserva, cantEstudiantesReserva, fechaReserva);
     }
 
-    public static void listarCarreras() throws IOException, Exception {
-        System.out.println("Lista de Carreras");
-        for (String data : ctrl.listarCarreras()) {
-            System.out.println("------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
+    public static void listarReservasLaboratorio() throws IOException, Exception {
+        System.out.println("Lista de Reservas de laboratorio");
+        for (String data : ctrl.listarReservasLaboratorio()) {
+            System.out.println("---------------------------------------------------");
             System.out.println(data);
         }
-        System.out.println("------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
-
     }
 
-    public static void listarLaboratorios() throws Exception {
-        System.out.println("Lista de Laboratorios");
-        for (String data : ctrl.listarLaboratorios()) {
-            System.out.println("------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
-            System.out.println(data);
-        }
-        System.out.println("------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
+    public static void borrarReservaLaboratorio() throws IOException, Exception {
+        System.out.println("Borrar reserva de laboratorio");
+        int codigoReservaLaboratorio;
 
+        System.out.println("Ingrese el código de la reserva de laboratorio");
+        codigoReservaLaboratorio = Integer.parseInt(in.readLine());
+
+        ctrl.borrarReservaLaboratorio(codigoReservaLaboratorio);
     }
 
-    public static void listarEmpleados() throws IOException, Exception {
-        System.out.println("Lista de Empleados");
-        for (String data : ctrl.listarEmpleados()) {
-            System.out.println("------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
-            System.out.println(data);
-        }
-        System.out.println("------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
+    public static void buscarReservaLaboratorioPorCodigo() throws IOException, Exception {
+        System.out.println("Busqueda de reserva de laboratorio");
+        int codigoReservaLaboratorio;
 
+        System.out.println("Ingrese el código de la reserva de laboratorio");
+        codigoReservaLaboratorio = Integer.parseInt(in.readLine());
+
+        System.out.println(ctrl.buscarReservaLaboratorioPorCodigo(codigoReservaLaboratorio));
     }
-
-    public static void listarProfesores() throws IOException {
-        System.out.println("Lista de Profesores");
-        for (String data : ctrl.listarProfesores()) {
-            System.out.println("------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
-            System.out.println(data);
-        }
-        System.out.println("------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
-
-    }
+    //ReservaLaboratorio
 
     public static LocalDate crearFecha() throws IOException {
         LocalDate fecha;
@@ -672,13 +722,5 @@ public class Main {
         fecha = LocalDate.of(year, mes, dia);
 
         return fecha;
-    }
-
-    public static void listarReservasLaboratorio() throws IOException {
-        System.out.println("Lista de Reservas de laboratorio");
-        for (String data : ctrl.listarReservasLaboratorio()) {
-            System.out.println("---------------------------------------------------");
-            System.out.println(data);
-        }
     }
 }

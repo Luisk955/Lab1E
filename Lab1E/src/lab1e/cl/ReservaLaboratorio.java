@@ -34,6 +34,9 @@ public class ReservaLaboratorio {
     public Laboratorio getLaboratorio() {
         return laboratorio;
     }
+    public int getCodigoLaboratorio(){
+        return laboratorio.getCodigo();
+    }
 
     public void setLaboratorio(Laboratorio laboratorio) {
         this.laboratorio = laboratorio;
@@ -42,6 +45,9 @@ public class ReservaLaboratorio {
     public Curso getCurso() {
         return curso;
     }
+    public String getCodigoCurso(){
+        return curso.getCodigo();
+    }
 
     public void setCurso(Curso curso) {
         this.curso = curso;
@@ -49,6 +55,9 @@ public class ReservaLaboratorio {
 
     public Profesor getProfesor() {
         return profesor;
+    }
+    public String getCedulaProfesor(){
+        return profesor.getCedula();
     }
 
     public void setProfesor(Profesor profesor) {

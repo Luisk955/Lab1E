@@ -7,9 +7,6 @@ import lab1e.cl.*;
 
 public class Gestor {
 
-    CL logic = new CL();
-    MultiCarrera multiCarrera = new MultiCarrera();
-
     public Gestor() {
     }
 
@@ -44,9 +41,9 @@ public class Gestor {
     //Empleado
 
     //Profesor
-    public void registrarProfesor(String lugarTrabajoProfesor, int annosExperienciaProfesor, String cedulaProfesor, String nombreProfesor, String apellidoProfesor, String direccionProfesor, String telefonoProfesor) {
+    public void registrarProfesor(String lugarTrabajoProfesor, int annosExperienciaProfesor, String cedulaProfesor, String nombreProfesor, String apellidoProfesor, String direccionProfesor, String telefonoProfesor) throws Exception {
         Profesor miProfesor = new Profesor(lugarTrabajoProfesor, annosExperienciaProfesor, cedulaProfesor, nombreProfesor, apellidoProfesor, direccionProfesor, telefonoProfesor);
-        logic.registrarProfesor(miProfesor);
+        new MultiProfesor().registrarProfesor(miProfesor);
     }
 
     public void actualizarProfesor(String lugarTrabajoProfesor, int annosExperienciaProfesor, String cedulaProfesor, String nombreProfesor, String apellidoProfesor, String direccionProfesor, String telefonoProfesor) throws Exception {
@@ -64,11 +61,11 @@ public class Gestor {
         return resp;
     }
 
-    public ArrayList<String> listarProfesores() throws IOException {
+    public ArrayList<String> listarProfesores() throws Exception {
         ArrayList<String> profesoresString = new ArrayList<>();
-        logic.listarProfesores().forEach((miProfesor) -> {
-            profesoresString.add(miProfesor.toStringUI());
-        });
+        for (Profesor profesor : (new MultiProfesor()).listarProfesores()) {
+            profesoresString.add(profesor.toStringUI());
+        }
         return profesoresString;
     }
     //Profesor
@@ -163,20 +160,33 @@ public class Gestor {
     }
     //Carrera
 
-    public void registrarReservaLaboratorio(int codigoUniqLaboratorioReserva, int codigoLaboratorioReserva, String codigoCursoReserva, String cedulaProfesorReserva, int cantEstudiantesReserva, LocalDate fechaReserva) throws IOException {
-        Curso miCurso = logic.buscarCurso(codigoCursoReserva);
-        Laboratorio miLaboratorio = logic.buscarLaboratorio(codigoLaboratorioReserva);
-        Profesor miProfesor = logic.buscarProfesor(cedulaProfesorReserva);
-
-        ReservaLaboratorio miReservaLaboratorio = new ReservaLaboratorio(codigoUniqLaboratorioReserva, miLaboratorio, miCurso, miProfesor, cantEstudiantesReserva, fechaReserva);
-        logic.registrarReservaLaboratorio(miReservaLaboratorio);
+    //ReservaLaboratorio
+    public void registrarReservaLaboratorio(int codigoUniqLaboratorioReserva, int codigoLaboratorioReserva, String codigoCursoReserva, String cedulaProfesorReserva, int cantEstudiantesReserva, LocalDate fechaReserva) throws IOException, Exception {
+        ReservaLaboratorio miReservaLaboratorio = new ReservaLaboratorio(codigoUniqLaboratorioReserva, (new MultiLaboratorio().buscarLaboratorioPorCodigo(codigoLaboratorioReserva)), (new MultiCurso().buscarCursoPorCodigo(codigoCursoReserva)), (new MultiProfesor().buscarProfesorPorCedula(cedulaProfesorReserva)), cantEstudiantesReserva, fechaReserva);
+        new MultiReservaLaboratorio().registrarReservaLaboratorio(miReservaLaboratorio);
     }
 
-    public ArrayList<String> listarReservasLaboratorio() throws IOException {
+    public ArrayList<String> listarReservasLaboratorio() throws Exception {
         ArrayList<String> reservasLaboratorioString = new ArrayList<>();
-        logic.listarReservasLaboratorio().forEach((miReservaLaboratorio) -> {
-            reservasLaboratorioString.add(miReservaLaboratorio.toStringUI());
-        });
+        for (ReservaLaboratorio reservaLaboratorio : (new MultiReservaLaboratorio()).listarReservasLaboratorio()) {
+            reservasLaboratorioString.add(reservaLaboratorio.toStringUI());
+        }
         return reservasLaboratorioString;
     }
+
+    public void actualizarReservaLaboratorio(int codigoUniqLaboratorioReserva, int codigoLaboratorioReserva, String codigoCursoReserva, String cedulaProfesorReserva, int cantEstudiantesReserva, LocalDate fechaReserva) throws IOException, Exception {
+        ReservaLaboratorio miReservaLaboratorio = new ReservaLaboratorio(codigoUniqLaboratorioReserva, (new MultiLaboratorio().buscarLaboratorioPorCodigo(codigoLaboratorioReserva)), (new MultiCurso().buscarCursoPorCodigo(codigoCursoReserva)), (new MultiProfesor().buscarProfesorPorCedula(cedulaProfesorReserva)), cantEstudiantesReserva, fechaReserva);
+        new MultiReservaLaboratorio().actualizarReservaLaboratorio(miReservaLaboratorio);
+    }
+
+    public void borrarReservaLaboratorio(int codigo) throws Exception {
+        new MultiReservaLaboratorio().borrarReservaLaboratorio(codigo);
+    }
+
+    public String buscarReservaLaboratorioPorCodigo(int codigo) throws Exception {
+        ReservaLaboratorio reservaLaboratorio = new MultiReservaLaboratorio().buscarReservaLaboratorioPorCodigo(codigo);
+        String resp = reservaLaboratorio.toStringUI();
+        return resp;
+    }
+    //ReservaLaboratorio
 }
