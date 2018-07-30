@@ -28,6 +28,12 @@ BEGIN
 delete from profesor where cedula = pCedula;
 END
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `deleteReservaLaboratorio`(
+pCodigo int)
+BEGIN
+delete from  reservalaboratorio where codigo = pCodigo;
+END
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `insertCarrera`(
 codigo int,
 nombre varchar(45),
@@ -86,6 +92,19 @@ insert into profesor (cedula, nombre, apellido, direccion, telefono, lugarTrabaj
 values (pCedula,pNombre,pApellido,pDireccion,pTelefono,pLugarTrabajo,pAnnosExp);
 END
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `insertReservaLaboratorio`(
+pCodigo int,
+pCodigolaboratorio int,
+pCodigocurso int,
+pCodigoprofesor int,
+pCantidadestudiantes int,
+pFechareserva date
+)
+BEGIN
+insert into reservalaboratorio(codigo,codigolaboratorio,codigocurso,codigoprofesor,cantidadestudiantes,fechareserva)
+values (pCodigo,pCodigolaboratorio,pCodigocurso,pCodigoprofesor,pCantidadestudiantes,pFechareserva);
+END
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `updateCarrera`(
 pCodigo int,
 pNombre varchar(45),
@@ -142,3 +161,15 @@ update profesor set nombre = pNombre, apellido= pApellido, direccion= pDireccion
 where cedula = pCedula;
 END
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `updateReservaLaboratorio`(
+pCodigo int,
+pCodigolaboratorio int,
+pCodigocurso int,
+pCodigoprofesor int,
+pCantidadestudiantes int,
+pFechareserva date
+)
+BEGIN
+update reservalaboratorio set codigolaboratorio = pCodigolaboratorio, codigocurso= pCodigocurso, codigoprofesor= pCodigoprofesor,cantidadestudiantes=pCantidadestudiantes,fechareserva=pFechareserva
+where codigo = pCodigo;
+END

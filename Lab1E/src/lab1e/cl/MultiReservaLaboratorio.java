@@ -19,16 +19,16 @@ public class MultiReservaLaboratorio {
         Accesobd accesobd = new Accesobd();
         Connection conn = accesobd.getConexion();
         Statement stmt = null;
-        sql = "SELECT  codigo, laboratorio, curso, profesor, cantEstudiantes, fechaReserva "
+        sql = "SELECT  codigo, codigolaboratorio, codigocurso, codigoprofesor, cantidadestudiantes, fechareserva "
                 + "FROM ReservaLaboratorio ;";
         stmt = conn.createStatement();
         rs = stmt.executeQuery(sql);
         while (rs.next()) {
             LocalDate fecha;
             reservaLaboratorio = new ReservaLaboratorio(rs.getInt("codigo"),
-                    (new MultiLaboratorio().buscarLaboratorioPorCodigo(rs.getInt("laboratorio"))),
-                    (new MultiCurso().buscarCursoPorCodigo(rs.getString("curso"))),
-                    (new MultiProfesor().buscarProfesorPorCedula(rs.getString("profesor"))), rs.getInt("cantidadestudiantes"),
+                    (new MultiLaboratorio().buscarLaboratorioPorCodigo(rs.getInt("codigolaboratorio"))),
+                    (new MultiCurso().buscarCursoPorCodigo(rs.getString("codigocurso"))),
+                    (new MultiProfesor().buscarProfesorPorCedula(rs.getString("codigoprofesor"))), rs.getInt("cantidadestudiantes"),
                     (rs.getDate("fechareserva").toLocalDate()));
             reservasLaboratorio.add(reservaLaboratorio);
         }
@@ -65,15 +65,15 @@ public class MultiReservaLaboratorio {
         Accesobd accesobd = new Accesobd();
         Connection conn = accesobd.getConexion();
         Statement stmt = null;
-        sql = "SELECT codigo, laboratorio, curso, profesor, cantEstudiantes, fechaReserva "
+        sql = "SELECT codigo, codigolaboratorio, codigocurso, codigoprofesor, cantidadestudiantes, fechareserva "
                 + "FROM ReservaLaboratorio " + "WHERE codigo LIKE concat(" + codigo + ",'%')" + ";";
         stmt = conn.createStatement();
         rs = stmt.executeQuery(sql);
         if (rs.next()) {
             reservaLaboratorio = new ReservaLaboratorio(rs.getInt("codigo"),
-                    (new MultiLaboratorio().buscarLaboratorioPorCodigo(rs.getInt("laboratorio"))),
-                    (new MultiCurso().buscarCursoPorCodigo(rs.getString("curso"))),
-                    (new MultiProfesor().buscarProfesorPorCedula(rs.getString("profesor"))), rs.getInt("cantidadestudiantes"),
+                    (new MultiLaboratorio().buscarLaboratorioPorCodigo(rs.getInt("codigolaboratorio"))),
+                    (new MultiCurso().buscarCursoPorCodigo(rs.getString("codigocurso"))),
+                    (new MultiProfesor().buscarProfesorPorCedula(rs.getString("codigoprofesor"))), rs.getInt("cantidadestudiantes"),
                     (rs.getDate("fechareserva").toLocalDate()));
         }
         rs.close();
