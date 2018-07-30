@@ -13,9 +13,24 @@ public class Gestor {
     public Gestor() {
     }
 
-    public void registrarEmpleado(String puestoEmpleado, String cedulaEmpleado, String nombreEmpleado, String apellidoEmpleado, String direccionEmpleado, String telefonoEmpleado) {
+    public void registrarEmpleado(String puestoEmpleado, String cedulaEmpleado, String nombreEmpleado, String apellidoEmpleado, String direccionEmpleado, String telefonoEmpleado) throws Exception {
         Empleado miEmpleado = new Empleado(puestoEmpleado, cedulaEmpleado, nombreEmpleado, apellidoEmpleado, direccionEmpleado, telefonoEmpleado);
-        logic.registrarEmpleado(miEmpleado);
+        new MultiEmpleado().registrarEmpleado(miEmpleado);
+    }
+
+    public void actualizarEmpleado(String puestoEmpleado, String cedulaEmpleado, String nombreEmpleado, String apellidoEmpleado, String direccionEmpleado, String telefonoEmpleado) throws Exception {
+        Empleado empleado = new Empleado(puestoEmpleado, cedulaEmpleado, nombreEmpleado, apellidoEmpleado, direccionEmpleado, telefonoEmpleado);
+        new MultiEmpleado().actualizarEmpleado(empleado);
+    }
+
+    public void borrarEmpleado(String cedula) throws Exception {
+        new MultiEmpleado().borrarEmpleado(cedula);
+    }
+
+    public String buscarEmpleadoPorCedula(String codigo) throws Exception {
+        Empleado empleado = new MultiEmpleado().buscarEmpleadoPorCedula(codigo);
+        String resp = empleado.toStringUI();
+        return resp;
     }
 
     public void registrarProfesor(String lugarTrabajoProfesor, int annosExperienciaProfesor, String cedulaProfesor, String nombreProfesor, String apellidoProfesor, String direccionProfesor, String telefonoProfesor) {
@@ -32,7 +47,7 @@ public class Gestor {
         Curso miCurso = new Curso(codigoCurso, nombreCurso, creditosCurso);
         new MultiCurso().registrarCurso(miCurso);
     }
-    
+
     public void actualizarCurso(String codigoCurso, String nombreCurso, int creditosCurso) throws Exception {
         Curso curso = new Curso(codigoCurso, nombreCurso, creditosCurso);
         new MultiCurso().actualizarCurso(curso);
@@ -101,11 +116,11 @@ public class Gestor {
         return carrerasString;
     }
 
-    public ArrayList<String> listarEmpleados() throws IOException {
+    public ArrayList<String> listarEmpleados() throws Exception {
         ArrayList<String> empleadosString = new ArrayList<>();
-        logic.listarEmpleados().forEach((miEmpleado) -> {
-            empleadosString.add(miEmpleado.toStringUI());
-        });
+        for (Empleado empleado : (new MultiEmpleado()).listarEmpleados()) {
+            empleadosString.add(empleado.toStringUI());
+        }
         return empleadosString;
     }
 

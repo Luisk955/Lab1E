@@ -49,6 +49,9 @@ public class Main {
         System.out.println("17.Actualizar curso");
         System.out.println("18.Borrar curso");
         System.out.println("19.Buscar curso por codigo");
+        System.out.println("20.Actualizar empleado");
+        System.out.println("21.Borrar empleado");
+        System.out.println("22.Buscar empleado por cedula");
 
     }
 
@@ -137,13 +140,25 @@ public class Main {
                 buscarCursoPorCodigo();
 
                 break;
+            case 20:
+                actualizarEmpleado();
+
+                break;
+            case 21:
+                borrarEmpleado();
+
+                break;
+            case 22:
+                buscarEmpleadoPorCedula();
+
+                break;
 
         }
 
         return salir;
     }
 
-    public static void registrarEmpleado() throws IOException {
+    public static void registrarEmpleado() throws IOException, Exception {
 
         System.out.println("Registro de empleado");
         System.out.println("------------------------");
@@ -174,7 +189,59 @@ public class Main {
         telefonoEmpleado = in.readLine();
 
         ctrl.registrarEmpleado(puestoEmpleado, cedulaEmpleado, nombreEmpleado, apellidoEmpleado, direccionEmpleado, telefonoEmpleado);
+    }
 
+    public static void actualizarEmpleado() throws IOException, Exception {
+
+        System.out.println("Actualizar empleado");
+        System.out.println("------------------------");
+
+        String puestoEmpleado;
+        String cedulaEmpleado;
+        String nombreEmpleado;
+        String apellidoEmpleado;
+        String direccionEmpleado;
+        String telefonoEmpleado;
+
+        System.out.println("Ingrese el puesto del empleado");
+        puestoEmpleado = in.readLine();
+
+        System.out.println("Ingrese la cédula del empleado");
+        cedulaEmpleado = in.readLine();
+
+        System.out.println("Ingrese el nombre del empleado");
+        nombreEmpleado = in.readLine();
+
+        System.out.println("Ingrese el primer apellido del empleado");
+        apellidoEmpleado = in.readLine();
+
+        System.out.println("Ingrese la dirección el empleado");
+        direccionEmpleado = in.readLine();
+
+        System.out.println("Ingrese el número telefónico del empleado");
+        telefonoEmpleado = in.readLine();
+
+        ctrl.actualizarEmpleado(puestoEmpleado, cedulaEmpleado, nombreEmpleado, apellidoEmpleado, direccionEmpleado, telefonoEmpleado);
+    }
+
+    public static void borrarEmpleado() throws IOException, Exception {
+        System.out.println("Borrar empleado");
+        String cedulaEmpleado;
+
+        System.out.println("Ingrese la cedula del empleado");
+        cedulaEmpleado = in.readLine();
+
+        ctrl.borrarEmpleado(cedulaEmpleado);
+    }
+
+    public static void buscarEmpleadoPorCedula() throws IOException, Exception {
+        System.out.println("Busqueda de empleado");
+        String cedulaEmpleado;
+
+        System.out.println("Ingrese la cedula del empleado");
+        cedulaEmpleado = in.readLine();
+
+        System.out.println(ctrl.buscarEmpleadoPorCedula(cedulaEmpleado));
     }
 
     public static void registrarProfesor() throws IOException {
@@ -439,7 +506,7 @@ public class Main {
 
     }
 
-    public static void listarEmpleados() throws IOException {
+    public static void listarEmpleados() throws IOException, Exception {
         System.out.println("Lista de Empleados");
         for (String data : ctrl.listarEmpleados()) {
             System.out.println("------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
