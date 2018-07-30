@@ -28,8 +28,8 @@ public class Gestor {
         new MultiEmpleado().borrarEmpleado(cedula);
     }
 
-    public String buscarEmpleadoPorCedula(String codigo) throws Exception {
-        Empleado empleado = new MultiEmpleado().buscarEmpleadoPorCedula(codigo);
+    public String buscarEmpleadoPorCedula(String cedula) throws Exception {
+        Empleado empleado = new MultiEmpleado().buscarEmpleadoPorCedula(cedula);
         String resp = empleado.toStringUI();
         return resp;
     }
@@ -47,6 +47,21 @@ public class Gestor {
     public void registrarProfesor(String lugarTrabajoProfesor, int annosExperienciaProfesor, String cedulaProfesor, String nombreProfesor, String apellidoProfesor, String direccionProfesor, String telefonoProfesor) {
         Profesor miProfesor = new Profesor(lugarTrabajoProfesor, annosExperienciaProfesor, cedulaProfesor, nombreProfesor, apellidoProfesor, direccionProfesor, telefonoProfesor);
         logic.registrarProfesor(miProfesor);
+    }
+
+    public void actualizarProfesor(String lugarTrabajoProfesor, int annosExperienciaProfesor, String cedulaProfesor, String nombreProfesor, String apellidoProfesor, String direccionProfesor, String telefonoProfesor) throws Exception {
+        Profesor profesor = new Profesor(lugarTrabajoProfesor, annosExperienciaProfesor, cedulaProfesor, nombreProfesor, apellidoProfesor, direccionProfesor, telefonoProfesor);
+        new MultiProfesor().actualizarProfesor(profesor);
+    }
+
+    public void borrarProfesor(String cedula) throws Exception {
+        new MultiProfesor().borrarProfesor(cedula);
+    }
+
+    public String buscarProfesorPorCedula(String cedula) throws Exception {
+        Profesor profesor = new MultiProfesor().buscarProfesorPorCedula(cedula);
+        String resp = profesor.toStringUI();
+        return resp;
     }
 
     public ArrayList<String> listarProfesores() throws IOException {

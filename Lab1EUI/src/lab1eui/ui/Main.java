@@ -55,6 +55,9 @@ public class Main {
         System.out.println("23.Actualizar laboratorio");
         System.out.println("24.Borrar laboratorio");
         System.out.println("25.Buscar laboratorio por codigo");
+        System.out.println("26.Actualizar profesor");
+        System.out.println("27.Borrar profesor");
+        System.out.println("28.Buscar profesor por cedula");
 
     }
 
@@ -165,6 +168,18 @@ public class Main {
                 break;
             case 25:
                 buscarLaboratorioPorCodigo();
+
+                break;
+            case 26:
+                actualizarProfesor();
+
+                break;
+            case 27:
+                borrarProfesor();
+
+                break;
+            case 28:
+                buscarProfesorPorCedula();
 
                 break;
 
@@ -295,6 +310,64 @@ public class Main {
 
         ctrl.registrarProfesor(lugarTrabajoProfesor, annosExpProfesor, cedulaProfesor, nombreProfesor, apellidoProfesor, direccionProfesor, telefonoProfesor);
 
+    }
+
+    public static void actualizarProfesor() throws IOException, Exception {
+
+        System.out.println("Registro de profesor");
+        System.out.println("------------------------");
+
+        String lugarTrabajoProfesor;
+        int annosExpProfesor;
+        String cedulaProfesor;
+        String nombreProfesor;
+        String apellidoProfesor;
+        String direccionProfesor;
+        String telefonoProfesor;
+
+        System.out.println("Ingrese el lugar de trabajo del profesor");
+        lugarTrabajoProfesor = in.readLine();
+
+        System.out.println("Ingrese los años de experiencia del profesor");
+        annosExpProfesor = Integer.parseInt(in.readLine());
+
+        System.out.println("Ingrese la cédula del profesor");
+        cedulaProfesor = in.readLine();
+
+        System.out.println("Ingrese el nombre del profesor");
+        nombreProfesor = in.readLine();
+
+        System.out.println("Ingrese el primer apellido del profesor");
+        apellidoProfesor = in.readLine();
+
+        System.out.println("Ingrese la dirección del profesor");
+        direccionProfesor = in.readLine();
+
+        System.out.println("Ingrese el número telefónico del profesor");
+        telefonoProfesor = in.readLine();
+
+        ctrl.actualizarProfesor(lugarTrabajoProfesor, annosExpProfesor, cedulaProfesor, nombreProfesor, apellidoProfesor, direccionProfesor, telefonoProfesor);
+
+    }
+
+    public static void borrarProfesor() throws IOException, Exception {
+        System.out.println("Borrar profesor");
+        String cedulaProfesor;
+
+        System.out.println("Ingrese la cedula del profesor");
+        cedulaProfesor = in.readLine();
+
+        ctrl.borrarProfesor(cedulaProfesor);
+    }
+
+    public static void buscarProfesorPorCedula() throws IOException, Exception {
+        System.out.println("Busqueda de carrera");
+        String cedulaProfesor;
+
+        System.out.println("Ingrese la cedula del profesor");
+        cedulaProfesor = in.readLine();
+
+        System.out.println(ctrl.buscarProfesorPorCedula(cedulaProfesor));
     }
 
     public static void registrarCarrera() throws IOException, Exception {
