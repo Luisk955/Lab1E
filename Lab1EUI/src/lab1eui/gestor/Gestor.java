@@ -132,8 +132,8 @@ public class Gestor {
 
     //Carrera
     public void registrarCarrera(String codigo, String nombre, String grado, Boolean acreditada) throws Exception {
-        Carrera carrera;
-        carrera = (new MultiCarrera()).registrarCarrera(codigo, nombre, grado, acreditada);
+        Carrera carrera = new Carrera (codigo, nombre, grado, acreditada);
+        new MultiCarrera().registrarCarrera(carrera);
     }
 
     public void actualizarCarrera(String codigo, String nombre, String grado, Boolean acreditada) throws Exception {

@@ -1,5 +1,7 @@
 package lab1e.cl;
 
+import accesobd.AccesoBD;
+import accesobd.Conector;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -13,16 +15,10 @@ public class MultiLaboratorio {
         ArrayList<Laboratorio> laboratorios = new ArrayList<>();
         Laboratorio laboratorio = null;
         java.sql.ResultSet rs;
-        String sql;
-        Accesobd accesobd = new Accesobd();
-        Connection conn = accesobd.getConexion();
-        Statement stmt = null;
-        sql = "SELECT codigo, nombre, capacidad "
-                + "FROM Laboratorio ;";
-        stmt = conn.createStatement();
-        rs = stmt.executeQuery(sql);
+        rs = (new Conector()).getConector().ejecutarSQL("{call listarLaboratorios()}", true);
         while (rs.next()) {
-            laboratorio = new Laboratorio(Integer.parseInt(rs.getString("codigo")), rs.getString("nombre"), Integer.parseInt(rs.getString("capacidad")));
+            laboratorio = new Laboratorio(Integer.parseInt(rs.getString("codigo")), rs.getString("nombre"),
+                    Integer.parseInt(rs.getString("capacidad")));
             laboratorios.add(laboratorio);
         }
         rs.close();
@@ -30,33 +26,18 @@ public class MultiLaboratorio {
     }
 
     public void registrarLaboratorio(Laboratorio laboratorio) throws Exception {
-        Accesobd accesobd = new Accesobd();
-        Statement stmt = null;
-
-        try {
-            Connection conn = accesobd.getConexion();
-            CallableStatement cs = conn.prepareCall("{call insertLaboratorio(?,?,?)}");
-            cs.setInt(1, laboratorio.getCodigo());
-            cs.setString(2, laboratorio.getNombre());
-            cs.setInt(3, laboratorio.getCapacidad());
-            cs.executeUpdate();
-
-        } catch (SQLException e) {
-            throw e;
-        }
+        ArrayList<Object> data = new ArrayList<>();
+        data.add(laboratorio.getCodigo());
+        data.add(laboratorio.getNombre());
+        data.add(laboratorio.getCapacidad());
+        (new Conector()).getConector().ejecutarSQL(data, "{call insertLaboratorio(?,?,?)}");
     }
 
     public Laboratorio buscarLaboratorioPorCodigo(int codigo) throws java.sql.SQLException, Exception {
         Laboratorio laboratorio = null;
         java.sql.ResultSet rs;
-        String sql;
-        Accesobd accesobd = new Accesobd();
-        Connection conn = accesobd.getConexion();
-        Statement stmt = null;
-        sql = "SELECT codigo, nombre, capacidad "
-                + "FROM Laboratorio " + "WHERE codigo LIKE concat(" + codigo + ",'%')" + ";";
-        stmt = conn.createStatement();
-        rs = stmt.executeQuery(sql);
+        rs = (new Conector()).getConector().ejecutarSQL(codigo, "{call searchLaboratorio(?)}", true);
+
         if (rs.next()) {
             laboratorio = new Laboratorio(Integer.parseInt(rs.getString("codigo")), rs.getString("nombre"), Integer.parseInt(rs.getString("capacidad")));
         }
@@ -65,36 +46,20 @@ public class MultiLaboratorio {
     }
 
     public void actualizarLaboratorio(Laboratorio laboratorio) throws java.sql.SQLException, Exception {
-        String sql;
-        java.sql.ResultSet rs;
-        Accesobd accesobd = new Accesobd();
-        Statement stmt = null;
-
         try {
-            Connection conn = accesobd.getConexion();
-            CallableStatement cs = conn.prepareCall("{call updateLaboratorio(?,?,?)}");
-            cs.setInt(1, laboratorio.getCodigo());
-            cs.setString(2, laboratorio.getNombre());
-            cs.setInt(3, laboratorio.getCapacidad());
-
-            cs.executeUpdate();
-
+            ArrayList<Object> data = new ArrayList<>();
+            data.add(laboratorio.getCodigo());
+            data.add(laboratorio.getNombre());
+            data.add(laboratorio.getCapacidad());
+            (new Conector()).getConector().ejecutarSQL(data, "{call updateLaboratorio(?,?,?)}");
         } catch (SQLException e) {
             throw e;
         }
     }
 
     public void borrarLaboratorio(int codigo) throws java.sql.SQLException, Exception {
-        java.sql.ResultSet rs;
-        Accesobd accesobd = new Accesobd();
-        Statement stmt = null;
-
         try {
-            Connection conn = accesobd.getConexion();
-            CallableStatement cs = conn.prepareCall("{call deleteLaboratorio(?)}");
-            cs.setInt(1, codigo);
-            cs.executeUpdate();
-
+            (new Conector()).getConector().ejecutarSQL(codigo, "{call deleteLaboratorio(?)}");
         } catch (SQLException e) {
             throw e;
         }

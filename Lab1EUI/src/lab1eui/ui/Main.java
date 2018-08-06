@@ -52,8 +52,8 @@ public class Main {
         System.out.println("20. Borrar curso");
         System.out.println("21. Registrar laboratorio");
         System.out.println("22. Listar laboratorios");
-        System.out.println("23. Actualizar laboratorio");
-        System.out.println("24. Buscar laboratorio por codigo");
+        System.out.println("23. Buscar laboratorio por codigo");
+        System.out.println("24. Actualizar laboratorio");
         System.out.println("25. Borrar laboratorio");
         System.out.println("26. Registrar reserva de laboratorio");
         System.out.println("27. Listar reservas de laboratorio");
