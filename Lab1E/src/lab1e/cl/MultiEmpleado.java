@@ -1,11 +1,11 @@
 package lab1e.cl;
 
+import accesobd.Conector;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import lab1e.accesobd.Accesobd;
 
 public class MultiEmpleado {
 
@@ -13,14 +13,8 @@ public class MultiEmpleado {
         ArrayList<Empleado> empleados = new ArrayList<>();
         Empleado empleado = null;
         java.sql.ResultSet rs;
-        String sql;
-        Accesobd accesobd = new Accesobd();
-        Connection conn = accesobd.getConexion();
-        Statement stmt = null;
-        sql = "SELECT cedula, nombre, apellido, direccion, telefono, puesto "
-                + "FROM Empleado ;";
-        stmt = conn.createStatement();
-        rs = stmt.executeQuery(sql);
+
+        rs = (new Conector()).getConector().ejecutarSQL("{call listarEmpleados()}", true);
         while (rs.next()) {
             empleado = new Empleado(rs.getString("puesto"), rs.getString("cedula"), rs.getString("nombre"), rs.getString("apellido"), rs.getString("direccion"), rs.getString("telefono"));
             empleados.add(empleado);
@@ -30,38 +24,20 @@ public class MultiEmpleado {
     }
 
     public void registrarEmpleado(Empleado empleado) throws Exception {
-        Accesobd accesobd = new Accesobd();
-        Statement stmt = null;
-        int cedulaint = Integer.parseInt(empleado.getCedula());
-
-        try {
-            Connection conn = accesobd.getConexion();
-            CallableStatement cs = conn.prepareCall("{call insertEmpleado(?,?,?,?,?,?)}");
-            cs.setInt(1, cedulaint);
-            cs.setString(2, empleado.getNombre());
-            cs.setString(3, empleado.getApellido());
-            cs.setString(4, empleado.getDireccion());
-            cs.setString(5, empleado.getTelefono());
-            cs.setString(6, empleado.getPuesto());
-            cs.executeUpdate();
-
-        } catch (SQLException e) {
-            throw e;
-        }
+        ArrayList<Object> data = new ArrayList<>();
+        data.add(Integer.parseInt(empleado.getCedula()));
+        data.add(empleado.getNombre());
+        data.add(empleado.getApellido());
+        data.add(empleado.getDireccion());
+        data.add(empleado.getTelefono());
+        data.add(empleado.getPuesto());
+        (new Conector()).getConector().ejecutarSQL(data, "{call insertEmpleado(?,?,?,?,?,?)}");
     }
 
     public Empleado buscarEmpleadoPorCedula(String cedula) throws java.sql.SQLException, Exception {
         Empleado empleado = null;
         java.sql.ResultSet rs;
-        String sql;
-        Accesobd accesobd = new Accesobd();
-        Connection conn = accesobd.getConexion();
-        Statement stmt = null;
-        int cedulaint = Integer.parseInt(cedula);
-        sql = "SELECT cedula, nombre, apellido, direccion, telefono, puesto "
-                + "FROM Empleado " + "WHERE cedula LIKE concat(" + cedulaint + ",'%')" + ";";
-        stmt = conn.createStatement();
-        rs = stmt.executeQuery(sql);
+        rs = (new Conector()).getConector().ejecutarSQL(Integer.parseInt(cedula), "{call searchEmpleado(?)}", true);
         if (rs.next()) {
             empleado = new Empleado(rs.getString("puesto"), rs.getString("cedula"), rs.getString("nombre"), rs.getString("apellido"), rs.getString("direccion"), rs.getString("telefono"));
         }
@@ -70,43 +46,26 @@ public class MultiEmpleado {
     }
 
     public void actualizarEmpleado(Empleado empleado) throws java.sql.SQLException, Exception {
-        String sql;
         java.sql.ResultSet rs;
-        Accesobd accesobd = new Accesobd();
-        Statement stmt = null;
-        int cedulaint = Integer.parseInt(empleado.getCedula());
-
         try {
-            Connection conn = accesobd.getConexion();
-            CallableStatement cs = conn.prepareCall("{call updateEmpleado(?,?,?,?,?,?)}");
-            cs.setInt(1, cedulaint);
-            cs.setString(2, empleado.getNombre());
-            cs.setString(3, empleado.getApellido());
-            cs.setString(4, empleado.getDireccion());
-            cs.setString(5, empleado.getTelefono());
-            cs.setString(6, empleado.getPuesto());
-
-            cs.executeUpdate();
-
+            ArrayList<Object> data = new ArrayList<>();
+            data.add(Integer.parseInt(empleado.getCedula()));
+            data.add(empleado.getNombre());
+            data.add(empleado.getApellido());
+            data.add(empleado.getDireccion());
+            data.add(empleado.getTelefono());
+            data.add(empleado.getPuesto());
+            (new Conector()).getConector().ejecutarSQL(data, "{call updateEmpleado(?,?,?,?,?,?)}");
         } catch (SQLException e) {
             throw e;
         }
     }
 
     public void borrarEmpleado(String cedula) throws java.sql.SQLException, Exception {
-        java.sql.ResultSet rs;
-        Accesobd accesobd = new Accesobd();
-        Statement stmt = null;
-        int cedulaint = Integer.parseInt(cedula);
-
         try {
-            Connection conn = accesobd.getConexion();
-            CallableStatement cs = conn.prepareCall("{call deleteEmpleado(?)}");
-            cs.setInt(1, cedulaint);
-            cs.executeUpdate();
-
-        } catch (Exception e) {
-            throw new Exception("El cliente tiene cuentas.");
+            (new Conector()).getConector().ejecutarSQL(Integer.parseInt(cedula), "{call deleteEmpleado(?)}");
+        } catch (SQLException e) {
+            throw e;
         }
     }
 }

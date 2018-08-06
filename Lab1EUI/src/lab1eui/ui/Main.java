@@ -213,11 +213,11 @@ public class Main {
         String direccionEmpleado;
         String telefonoEmpleado;
 
-        System.out.println("Ingrese el puesto del empleado");
-        puestoEmpleado = in.readLine();
-
         System.out.println("Ingrese la cédula del empleado");
         cedulaEmpleado = in.readLine();
+
+        System.out.println("Ingrese el puesto del empleado");
+        puestoEmpleado = in.readLine();
 
         System.out.println("Ingrese el nombre del empleado");
         nombreEmpleado = in.readLine();
@@ -306,7 +306,7 @@ public class Main {
 
     public static void actualizarProfesor() throws IOException, Exception {
 
-        System.out.println("Registro de profesor");
+        System.out.println("Actualizar profesor");
         System.out.println("------------------------");
 
         String lugarTrabajoProfesor;
@@ -317,14 +317,14 @@ public class Main {
         String direccionProfesor;
         String telefonoProfesor;
 
+        System.out.println("Ingrese la cédula del profesor");
+        cedulaProfesor = in.readLine();
+
         System.out.println("Ingrese el lugar de trabajo del profesor");
         lugarTrabajoProfesor = in.readLine();
 
         System.out.println("Ingrese los años de experiencia del profesor");
         annosExpProfesor = Integer.parseInt(in.readLine());
-
-        System.out.println("Ingrese la cédula del profesor");
-        cedulaProfesor = in.readLine();
 
         System.out.println("Ingrese el nombre del profesor");
         nombreProfesor = in.readLine();
@@ -353,7 +353,7 @@ public class Main {
     }
 
     public static void buscarProfesorPorCedula() throws IOException, Exception {
-        System.out.println("Busqueda de carrera");
+        System.out.println("Busqueda de profesor");
         String cedulaProfesor;
 
         System.out.println("Ingrese la cedula del profesor");
