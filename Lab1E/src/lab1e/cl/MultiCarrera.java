@@ -27,8 +27,7 @@ public class MultiCarrera {
 
     public void registrarCarrera(Carrera carrera) throws Exception {
         ArrayList<Object> data = new ArrayList<>();
-        int codigoInt = Integer.parseInt(carrera.getCodigo());
-        data.add(codigoInt);
+        data.add(Integer.parseInt(carrera.getCodigo()));
         data.add(carrera.getNombre());
         data.add(carrera.getGrado());
         data.add(carrera.getAcreditada());
